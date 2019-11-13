@@ -6,16 +6,18 @@
  * @flow
  */
 
-import React from 'react';
+import React,{Component} from 'react';
 
-import {View,Text} from 'react-native';
+import {View,Text,Button} from 'react-native';
 
-const ChangeInfo: () => React$Node = () => {
-  return (
-    <View style={{flex:1,backgroundColor: '#d4d4f7'}}>
-      <Text>ChangeInfo page</Text>
-    </View>
-  );
+class ChangeInfo extends Component {
+  <View style={{flex:1,backgroundColor: '#ccc'}}>
+    <Text>ChangeInfo page</Text>
+    <Button
+        title="Go back"
+        onPress={() => this.props.navigation.goBack()}
+      />
+  </View>
 };
 
 

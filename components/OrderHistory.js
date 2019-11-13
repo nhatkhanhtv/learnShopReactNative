@@ -6,17 +6,19 @@
  * @flow
  */
 
-import React from 'react';
+ import React,{Component} from 'react';
 
-import {View,Text} from 'react-native';
+ import {View,Text,Button} from 'react-native';
 
-const OrderHistory: () => React$Node = () => {
-  return (
-    <View style={{flex:1,backgroundColor: '#f5f5f5'}}>
-      <Text>OrderHistory page</Text>
-    </View>
-  );
-};
+ class OrderHistory extends Component {
+   <View style={{flex:1,backgroundColor: '#ccc'}}>
+     <Text>OrderHistory page</Text>
+     <Button
+         title="Go back"
+         onPress={() => this.props.navigation.goBack()}
+       />
+   </View>
+ };
 
 
-export default OrderHistory;
+ export default OrderHistory;

@@ -1,24 +1,20 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
+import {StatusBar} from 'react-native';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
-
-import {View,StatusBar} from 'react-native';
+import Main from './components/Main/Main';
+import Authentication from './components/Authenticate/Authentication';
 import ChangeInfo from './components/ChangeInfo';
-StatusBar.setHidden(true);
-const App: () => React$Node = () => {
-  return (
-    <View style={{flex:1}}>
-      <ChangeInfo/>
-    </View>
-  );
-};
+import OrderHistory from './components/OrderHistory';
 
+const MainNavigator = createStackNavigator({
+  Home: {screen: Main},
+  Authentication: {screen: Authentication},
+  ChangeInfo: {screen: ChangeInfo},
+  OrderHistory: {screen: OrderHistory},
+});
+
+const App = createAppContainer(MainNavigator);
 
 export default App;
