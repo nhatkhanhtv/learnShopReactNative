@@ -10,11 +10,17 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "eslint": "^6.6.0",
+    "jetifier": "^1.6.4",
     "react": "16.9.0",
     "react-native": "0.61.4",
     "react-native-gesture-handler": "^1.5.0",
+    "react-native-reanimated": "^1.4.0",
+    "react-native-screens": "1.0.0-alpha.23",
     "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.10.3"
+    "react-navigation-drawer": "^2.3.3",
+    "react-navigation-stack": "^1.10.3",
+    "react-navigation-tabs": "^2.5.6"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -23,7 +29,6 @@
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
     "babel-jest": "^24.9.0",
-    "eslint": "^6.6.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",

@@ -10,13 +10,17 @@
  import {View,Text,Button} from 'react-native';
 
  class OrderHistory extends Component {
+   goToHome() {
+     const {navigate} = this.props.navigation;
+     navigate('Home');
+   }
    render(){
      return (
        <View style={{flex:1,backgroundColor: '#ccc'}}>
          <Text>OrderHistory page</Text>
          <Button
              title="Go back"
-             onPress={() => this.props.navigation.goBack()}
+             onPress={() => this.goToHome()}
            />
        </View>
      );

@@ -1,31 +1,35 @@
 import React,{Component} from 'react';
 import {View,Text,Button} from 'react-native';
 
+
+import Menu from './Menu';
+import Shop from './Shop/Shop';
+
 class Main extends Component {
+
+
+
+  goToMenu(){
+    this.props.navigation.openDrawer();
+  }
+
+
+
+
 
   render(){
     const {navigate} = this.props.navigation;
     return (
-      <View style={{flex:1,backgroundColor: '#7ab2b5'}}>
-        <Text>Main page</Text>
-        <Button
-          style={{margin:5}}
-          title="Authenticate"
-          onPress={() => navigate('Authentication')}
-        />
-        <Button
-          style={{margin:5}}
-          title="Change Info"
-          onPress={() => navigate('ChangeInfo')}
-        />
-        <Button
-          style={{margin:5}}
-          title="Order History"
-          onPress={() => navigate('OrderHistory')}
-        />
+      <>
 
 
-      </View>
+      <Button
+        onPress={() => {this.goToMenu()}}
+        title="Go to Menu"
+      />
+
+
+      </>
     );
   }
 };
