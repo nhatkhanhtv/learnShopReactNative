@@ -1,8 +1,17 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {
+  StatusBar,
+  Image,
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  TouchableOpacity,
+  SafeViewArea,
+  ScrollView} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createDrawerNavigator,DrawerItem } from 'react-navigation-drawer';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Main from './components/Main/Main';
 import Authentication from './components/Authenticate/Authentication';
@@ -14,8 +23,9 @@ import Home from './components/Main/Shop/Home';
 import Cart from './components/Main/Shop/Cart';
 import Search from './components/Main/Shop/Search';
 import Contact from './components/Main/Shop/Contact';
-// import Home from './component/Main/Shop/Home';
 
+import { Icon } from 'react-native-vector-icons/FontAwesome'; // 6.2.2
+// import Home from './component/Main/Shop/Home';
 
 
 //
@@ -27,40 +37,102 @@ import Contact from './components/Main/Shop/Contact';
 //     screen: Authentication
 //   }
 // });
+const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10
+  },
+})
+
+
+
 
 export default class App extends React.Component {
+  callMenuNavi() {
+    this.navigator &&
+      this.navigator.dispatch(
+    this.props.navigation.openDrawer());
+
+  }
   render() {
-    return <AppContainer />;
+    // const {navigate} = this.props.navigation;
+    return <>
+      <View>
+        <Button onPress={ this.callMenuNavi()} title="Click"/>
+      </View>
+      <AppContainer  ref={nav => {
+          this.navigator = nav;
+        }}/>
+    </>;
   }
 }
-// const SignInScreen = createStackNavigator({
-//   SignIn: ChangeInfo,
-//   ForgotPassword: OrderHistory,
-// });
-//
+
+
 const HomeScreen = createStackNavigator({
-  Home: Main,
-  Authentication: Authentication,
-  ChangeInfo: ChangeInfo,
-  OrderHistory: OrderHistory
+  Home: {
+    screen:Main,
+    navigationOptions: () => ({
+      title: `A`,
+      headerShown: false,
+    }),
+  },
+  Authentication: {
+    screen: Authentication,
+    navigationOptions:{
+      headerShown: false,
+    }
+  },
+  ChangeInfo: {
+    screen:ChangeInfo,
+    navigationOptions:{
+      headerShown: false,
+    }
+  },
+  OrderHistory: {
+    screen: OrderHistory,
+    navigationOptions:{
+      headerShown: false,
+    }
+  }
+},{
+  //headerMode : 'none',
+  defaultNavigationOptions:{
+
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
 });
 
 const ShopScreen = createBottomTabNavigator({
   Home: {
-    screen:HomeScreen,
-    tabBarIcon:'../images/chat-icon.png'
+    screen:HomeScreen
   },
-  Cart: Cart,
-  Search: Search,
-  Contact: Contact
+  Cart: {
+    screen:Cart
+  },
+  Search: {
+    screen:Search
+  },
+  Contact:{
+    screen:Contact
+  },
 },{
 
     tabBarOptions: {
-    activeTintColor: 'tomato',
-    inactiveTintColor: 'gray',
-    labelStyle:{fontWeight:'bold'}
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
+      showIcon: true,
+      showLabel: true,
     },
+
 });
+
 
 const AppNavigator = createDrawerNavigator({
   /*
@@ -72,6 +144,7 @@ const AppNavigator = createDrawerNavigator({
 
 },{
   contentComponent: props => (<Menu {...props} />)
+
 });
 
 const AppContainer = createAppContainer(AppNavigator);
