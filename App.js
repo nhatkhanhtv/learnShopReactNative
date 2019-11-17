@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   Text,
+  Button,
   TouchableOpacity,
   SafeViewArea,
   ScrollView} from 'react-native';
@@ -46,14 +47,23 @@ const styles = StyleSheet.create({
 
 
 
+
 export default class App extends React.Component {
+  callMenuNavi() {
+    this.navigator &&
+      this.navigator.dispatch(
+    this.props.navigation.openDrawer());
+
+  }
   render() {
     // const {navigate} = this.props.navigation;
     return <>
-      <View
-        <Button onPress={alert('click')} title=""/>
+      <View>
+        <Button onPress={ this.callMenuNavi()} title="Click"/>
       </View>
-      <AppContainer />
+      <AppContainer  ref={nav => {
+          this.navigator = nav;
+        }}/>
     </>;
   }
 }
